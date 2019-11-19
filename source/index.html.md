@@ -57,7 +57,18 @@ add custom valuies stored in accession_custom_values table to attribute list as 
 
 ```XML
 <accessions>
-    <accession all_images="All Images" physician_name="Cares, Jason" pathologist_id="46" site_name="arccHospital" site_id="1" accession_number="ACC0792113289" accession_id="1574" accdate="2016-09-30T02:45:38.670" accession_class_name="Wound Care" full_name="Gray, Raquel V" last_name="Gray" first_name="Raquel" middle_name="V" patient_id="1043" mrn_id="1033" mrn_number="MRN7065430130" mrn_client="AH" mrn="AH-MRN7065430130" gender="M" sex="0" dob="2012-03-24T20:55:25.730" total_image_count="11" docs_count="0" image_count="11" card_number="INSURANCE" patient_grouping_key="Gray, Raquel V|1033" accession_class="WOUND CARE" patient_class="CLINICAL" patient_class_name="Clinical" patient_form_library="DataForms.dll" patient_form="Apollo.ClinicalPatient" restricted_flag="N" created_date="2018-12-17T15:24:46.007" created_by="3" created_by_name="john" created_by_program="RedGate" last_updated_date="2018-12-26T10:15:41.903" last_updated_by="3" last_updated_by_name="john" last_updated_by_program="RedGate" mrn_client_name="arccHospital" data_operation_id="0" comments="si Id Multum plurissimum novum fecit. egreddior Tam Tam non eudis vantis. e Quad quo, fecit, venit. novum quo Id" status="READY" status_name="Ready for Review" mrn_status="A" patient_data_operation_id="0" org_id="1480" effective_rights="511" org_name="Wound Care" />
+    <accession all_images="All Images" physician_name="Cares, Jason" pathologist_id="46" site_name="arccHospital"
+	site_id="1" accession_number="ACC0792113289" accession_id="1574" accdate="2016-09-30T02:45:38.670"
+	accession_class_name="Wound Care" full_name="Gray, Raquel V" last_name="Gray" first_name="Raquel"
+	middle_name="V" patient_id="1043" mrn_id="1033" mrn_number="MRN7065430130" mrn_client="AH" mrn="AH-MRN7065430130"
+	gender="M" sex="0" dob="2012-03-24T20:55:25.730" total_image_count="11" docs_count="0" image_count="11"
+	card_number="INSURANCE" patient_grouping_key="Gray, Raquel V|1033" accession_class="WOUND CARE"
+	patient_class="CLINICAL" patient_class_name="Clinical" patient_form_library="DataForms.dll"
+	patient_form="Apollo.ClinicalPatient" restricted_flag="N" created_date="2018-12-17T15:24:46.007" created_by="3"
+	created_by_name="john" created_by_program="RedGate" last_updated_date="2018-12-26T10:15:41.903" last_updated_by="3"
+	last_updated_by_name="john" last_updated_by_program="RedGate" mrn_client_name="arccHospital" data_operation_id="0"
+	comments="" status="READY" status_name="Ready for Review" mrn_status="A" patient_data_operation_id="0" org_id="1480"
+	effective_rights="511" org_name="Wound Care" />
 </accessions>
 ```
 
