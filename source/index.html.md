@@ -46,11 +46,15 @@ Others as indicated by accessionSearch | UQP
 
 <aside class="notice">
 DATETIME: Format as YYYY-MM-DDT24:MI:SS.FFF
+
+
 <code>2012-03-02T15:19:46.000</code>
 </aside>
 
 <aside class="notice">
-add custom values stored in accession_custom_values table to attribute list as <code>field_name=<field_value></code> pairs:
+add custom values stored in accession_custom_values table to attribute list as <code>field_name=<field_value></code> pairs:\n
+
+
 <code><accession accession_id=1000 name='S10-1' ... customField1='VALUE' customField2='VALUE'></code>
 </aside>
 
