@@ -33,7 +33,7 @@ We have language bindings in Visual Basic, C#, and Typescript! You can view code
 
 Purpose: Get accession information based on <code>accessionID</code>
 
-Stored Procedure: accessionSearch
+Stored Procedure: <code>accessionSearch</code>
 
 ### Query Parameters
 
@@ -50,7 +50,7 @@ DATETIME: Format as YYYY-MM-DDT24:MI:SS.FFF
 </aside>
 
 <aside class="notice">
-add custom valuies stored in accession_custom_values table to attribute list as <code>field_name=<field_value></code> pairs:
+add custom values stored in accession_custom_values table to attribute list as <code>field_name=<field_value></code> pairs:
 <code><accession accession_id=1000 name='S10-1' ... customField1='VALUE' customField2='VALUE'></code>
 </aside>
 
