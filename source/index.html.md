@@ -79,7 +79,7 @@ add custom values stored in accession_custom_values table to attribute list as <
 
 Purpose: Retrieve image metadata by <code>imageID</code>
 
-Stored Procedure: imageSearch
+Stored Procedure: <code>imageSearch</code>
 
 ### Query Parameters
 
