@@ -33,9 +33,7 @@ We have language bindings in Visual Basic, C#, and Typescript! You can view code
 
 `GET: http://dev-web/DataServices/accessions/<accessionID>`
 
-TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST
-
-Purpose: Get accession information based on ID
+Purpose: Get accession information based on <code>accessionID</code>
 
 Stored Procedure: accessionSearch
 
@@ -47,6 +45,11 @@ userID | Security ticket
 accessRight | UQP, user 'VIEW' if not specified
 imageID | URL
 Others as indicated by accessionSearch | UQP
+
+<aside class="notice">
+DATETIME: Format as YYYY-MM-DDT24:MI:SS.FFF
+<code>2012-03-02T15:19:46.000</code>
+</aside>
 
 <aside class="notice">
 add custom valuies stored in accession_custom_values table to attribute list as <code>field_name=<field_value></code> pairs:
@@ -76,169 +79,128 @@ add custom valuies stored in accession_custom_values table to attribute list as 
 
 `GET: http://dev-web/DataServices/images/<imageID>`
 
+Purpose: Retrieve image metadata by <code>imageID</code>
 
+Stored Procedure: imageSearch
 
-```ruby
-require 'kittn'
+### Query Parameters
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+Parameter | Source
+--------- | -------
+userID | Security ticket
+accessRight | UQP, user 'VIEW' if not specified
+imageID | URL
+Others as indicated by imageSearch | UQP
+
+> The above command returns XML structured like this:
+
+```XML
+<images>
+    <image image_id="659871" name="1547_659871" caption="1547_659871" log="N" image_number="659871.jpg" image_format="JPEG"
+	image_class_name="Cytology" dob="2000-01-02T00:00:00.000" full_name="Blick, Narg" mrn="AH-8675309" gender="M"
+	accession_number="JB-006" accdate="2018-12-03T00:00:00.000" accession_class_name="Cytology" comment=""
+	file_creation_date="2017-01-09T15:47:38.710" created_date="2018-12-26T10:07:11.053" created_by="3" created_by_program="RedGate"
+	last_updated_date="2018-12-26T10:07:11.053" last_updated_by="3" last_updated_by_program="RedGate"
+	anatomic_site_name="Nerve Fiber Layer" resolution_x="1620" resolution_y="1199" taken_by="RedGate" media_type="IMAGE"
+	access_type="APOLLO" accession_id="1547" created_by_user="Reichert, John" last_updated_by_user="Reichert, John" resolution="1620x1199"
+	form_name="SickKids.SCANImage" form_library="SickKids.dll" mrn_id="995" image_class="Cytology" accession_class="Cytology"
+	legacy_image_file_name="NERVE_FIBER_LAYER.jpg" patient_id="1003" anatomic_site="NERVE_FIBER_LAYER" restricted_flag="N"
+	media_type_description="JPEG" storage_location_name="Default" color_depth="24" data_operation_id="0" storage_location_id="1"
+	orientation="1" annotation_flag="Y" image_file_size="596574" sort_order="659871" org_id="1461" effective_rights="511" org_name="Cytology" />
+</images>
 ```
 
-```python
-import kittn
+# Lookups
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+`GET: http://dev-web/DataServices/lookups/<lookupType>`
+
+Stored Procedure: <code>getLookupSet</code> OR <code>getLookupClassSet</code>
+
+Purpose: Retrieve list of lookup codes based on <code>lookupType</code>
+
+### Query Parameters
+
+Parameter | Source
+--------- | -------
+lookupType | URL
+accessionClass | UQP
+
+> The above command returns XML structured like this:
+
+```XML
+<lookups>
+    <lookup lookup_code="BM Acid Phosphatase" description="BM Acid Phosphatase" status="A" />
+    <lookup lookup_code="BM BM Diff" description="BM BM Diff" status="A" />
+    <lookup lookup_code="BM CSFDIFF" description="BM CSFDIFF" status="A" />
+    <lookup lookup_code="BM NSE" description="BM NSE" status="A" />
+    <lookup lookup_code="BM NSE+FL" description="BM NSE+FL" status="A" />
+    <lookup lookup_code="BM PAS" description="BM PAS" status="A" />
+    <lookup lookup_code="BM PB Diff" description="BM PB Differ" status="A" />
+    <lookup lookup_code="BM Peroxidase" description="BM Peroxidase" status="A" />
+    <lookup lookup_code="BM Prussian Blue" description="BM Prussian Blue" status="A" />
+    <lookup lookup_code="BM Sudan Black" description="BM Sudan Black" status="A" />
+    <lookup lookup_code="BM Wright" description="BM Wright" status="A" />
+    <lookup lookup_code="BOSPHOROUS" description="Bosphoric Acetate" status="A" />
+    <lookup lookup_code="EH ACE" description="EH ACE" status="A" />
+    <lookup lookup_code="EH ACPH" description="EH ACPH" status="A" />
+    <lookup lookup_code="EH ADA" description="EH ADA" status="A" />
+    <lookup lookup_code="EH ALKPH" description="EH ALKPH" status="A" />
+    <lookup lookup_code="EH ANAE" description="EH ANAE" status="A" />
+    <lookup lookup_code="EH ATP43" description="EH ATP43" status="A" />
+    <lookup lookup_code="EH ATP46" description="EH ATP46" status="A" />
+    <lookup lookup_code="IP alpha beta Crystallin" description="IP alpha beta Crystallin" status="A" />
+    <lookup lookup_code="IP Alpha-1-ACT" description="IP Alpha-1-ACT" status="A" />
+    <lookup lookup_code="IP Alpha-1-AT" description="IP Alpha-1-AT" status="A" />
+    <lookup lookup_code="IP Alpha-fetoprotein" description="IP Alpha-fetoprotein" status="A" />
+    <lookup lookup_code="IP alpha-internexin" description="IP alpha-internexin" status="A" />
+    <lookup lookup_code="IP Amylase" description="IP Amylase" status="A" />
+    <lookup lookup_code="IP Antibody Titration" description="IP Antibody Titration" status="A" />
+    <lookup lookup_code="IP B Catenin" description="IP B Catenin" status="A" />
+    <lookup lookup_code="IP BAF47" description="IP BAF47" status="A" />
+    <lookup lookup_code="IP B-Alzheimer PP" description="IP B-Alzheimer PP" status="A" />
+    <lookup lookup_code="IP BAX" description="IP BAX" status="A" />
+    <lookup lookup_code="IP bcl-10 oncogene" description="IP bcl-10 oncogene" status="A" />
+    <lookup lookup_code="IP bcl-2 oncogene" description="IP bcl-2 oncogene" status="A" />
+    <lookup lookup_code="IP bcl-6 oncogene" description="IP bcl-6 oncogene" status="A" />
+    <lookup lookup_code="IP Thyroid transcription factor-1" description="IP Thyroid transcription factor-1" status="A" />
+</lookups>
 ```
 
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+## Lookup Values
+`GET: http://dev-web/DataServices/lookups/<lookupType>/<lookupCode>`
+
+Stored Procedure: <code>getLookupValue</code>
+
+### Query Parameters
+
+Parameter | Source
+--------- | -------
+lookupType | URL
+lookupCode | URL
+
+>The above code returns XML structured like this:
+
+```XML
+<lookups>
+    <lookup lookup_code="BOSPHOROUS" description="Bosphoric Acetate" status="A" />
+</lookups>
 ```
 
-```javascript
-const kittn = require('kittn');
+## Lookup Types
+`GET: http://dev-web/DataServices/lookuptypes/<lookupType>`
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+Stored Procedure: <code>getLookupType</code>
+
+### Query Parameters
+
+Parameter | Source
+--------- | -------
+lookupType | URL
+
+>The above code returns XML structured like this:
+
+```XML
+<lookuptypes>
+    <lookuptype description="Stain" user_maintainable="Y" status="A" />
+</lookuptypes>
 ```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-
-
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
