@@ -48,7 +48,7 @@ Others as indicated by accessionSearch | UQP
 
 <aside class="notice">
 add custom valuies stored in accession_custom_values table to attribute list as <code>field_name=<field_value></code> pairs:
-<code><accession accession_id=1000 name='S10-1' ... customField1='VALUE' customField2='VALUE'
+<code><accession accession_id=1000 name='S10-1' ... customField1='VALUE' customField2='VALUE'></code>
 </aside>
 
 > The above URL returns XML structured like this:
