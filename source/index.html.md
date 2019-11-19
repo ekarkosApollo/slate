@@ -1,15 +1,12 @@
 ---
-title: API Reference
+title: DataServices API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
+  - vb
+  - csharp
+  - typescript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
   - errors
@@ -19,55 +16,54 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Apollo DataServices API Reference Documentation.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+The purpose of the Apollo API Integration Documentation is to provide a description of the service endpoints for the Apollo EPMM data services. 
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+The Apollo data services provide access to all metadata and image objects within Apollo EPMM by thirdparty applications.
 
-# Authentication
+The service is hosted on Apollo’s IIS based web server.  As it is hosted on an IIS web server, it must adhere to safeguards in place to prevent malicious persons from disrupting the server –most importantly requests posted to the web server can’t exceed a maximum size (to prevent denial of service attacks).
 
-> To authorize, use this code:
+The Apollo data services support HTTP and HTTPS for URL requests used by thirdparty applications. Guidelines for secure access and use of the service endpoints described below will be determined at implementation.
 
-```ruby
-require 'kittn'
+We have language bindings in Visual Basic, C#, and Typescript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
 
-```python
-import kittn
+# Accessions
 
-api = kittn.authorize('meowmeowmeow')
-```
+`GET: http://dev-web/DataServices/accessions/<accessionID>`
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+Purpose: Get accession information based on ID
 
-```javascript
-const kittn = require('kittn');
+Stored Procedure: accessionSearch
 
-let api = kittn.authorize('meowmeowmeow');
-```
+### Query Parameters
 
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+Parameter | Source
+--------- | -------
+userID | Security ticket
+accessRight | UQP, user 'VIEW' if not specified
+imageID | URL
+Others as indicated by accessionSearch | UQP
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+add custom valuies stored in accession_custom_values table to attribute list as <code>field_name=<field_value></code> pairs:
+<code><accession accession_id=1000 name='S10-1' ... customField1='VALUE' customField2='VALUE'
 </aside>
 
-# Kittens
+> The above URL returns XML structured like this:
 
-## Get All Kittens
+```XML
+<accessions>
+    <accession all_images="All Images" physician_name="Cares, Jason" pathologist_id="46" site_name="arccHospital" site_id="1" accession_number="ACC0792113289" accession_id="1574" accdate="2016-09-30T02:45:38.670" accession_class_name="Wound Care" full_name="Gray, Raquel V" last_name="Gray" first_name="Raquel" middle_name="V" patient_id="1043" mrn_id="1033" mrn_number="MRN7065430130" mrn_client="AH" mrn="AH-MRN7065430130" gender="M" sex="0" dob="2012-03-24T20:55:25.730" total_image_count="11" docs_count="0" image_count="11" card_number="INSURANCE" patient_grouping_key="Gray, Raquel V|1033" accession_class="WOUND CARE" patient_class="CLINICAL" patient_class_name="Clinical" patient_form_library="DataForms.dll" patient_form="Apollo.ClinicalPatient" restricted_flag="N" created_date="2018-12-17T15:24:46.007" created_by="3" created_by_name="john" created_by_program="RedGate" last_updated_date="2018-12-26T10:15:41.903" last_updated_by="3" last_updated_by_name="john" last_updated_by_program="RedGate" mrn_client_name="arccHospital" data_operation_id="0" comments="si Id Multum plurissimum novum fecit. egreddior Tam Tam non eudis vantis. e Quad quo, fecit, venit. novum quo Id" status="READY" status_name="Ready for Review" mrn_status="A" patient_data_operation_id="0" org_id="1480" effective_rights="511" org_name="Wound Care" />
+</accessions>
+```
+
+# Images
+
+`GET: http://dev-web/DataServices/images/<imageID>`
+
+
 
 ```ruby
 require 'kittn'
@@ -122,12 +118,8 @@ This endpoint retrieves all kittens.
 
 `GET http://example.com/api/kittens`
 
-### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+
 
 <aside class="success">
 Remember — a happy kitten is an authenticated kitten!
